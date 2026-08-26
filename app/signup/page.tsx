@@ -66,7 +66,7 @@ const Signup = () => {
                 </section>
             </div>
             {/* right */}
-            <div className='container m-auto flex items-center justify-center'>
+            <div className='container my-50 md:m-auto flex items-center justify-center'>
                 <div className='border h-full w-full md:h-130 md:w-100  justify-center p-3'>
                     <h1 className='text-2xl text-gray-800 p-3'>Signup</h1>
                     <div className='flex flex-col gap-2 py-3'>
