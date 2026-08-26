@@ -22,6 +22,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  activities Activity[]
 
   @@unique([email])
   @@map("user")
@@ -75,4 +76,32 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Activity{
+  id String @id @default(cuid())
+  carDistance Int
+  bikeDistance Int
+  busDistance Int
+  trainDistance Int
+  flightDistance Int
+  electricity Int
+  lpg Int
+  naturalGas Int
+  chicken Int
+  vegMeals Int
+  dairy Int
+  plastic Int
+  paper Int
+  organic Int
+  others Int
+  totalTransport Int
+  totalFood Int
+  totalEnergy Int
+  totalWaste Int
+  totalEmission Int
+  userId String
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createdAt DateTime @default(now())
+
 }
