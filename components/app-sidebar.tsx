@@ -14,6 +14,7 @@ import { FaLeaf } from "react-icons/fa6";
 import { Button } from "./ui/button";
 import { BarChart, Goal, History, House, Lightbulb, LogOut, Plus, User, User2 } from "lucide-react";
 import LogoutButton from "./LogoutButton";
+import Link from "next/link";
 
 export function AppSidebar() {
   return (
@@ -38,19 +39,23 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
+                <Link href={'/dashboard'}>
                 <SidebarMenuButton>
                  <div className="flex gap-2 text-center justify-center">
-                  <House/> Dashboard
+                  <House/>  Dashboard
                  </div>
                 </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
 
               <SidebarMenuItem>
+                <Link href={'/ActivityForm'}>
                 <SidebarMenuButton>
                   <div className="flex gap-2 text-center justify-center">
                   <Plus/> Add Activity
                  </div>
                 </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
 
               <SidebarMenuItem>

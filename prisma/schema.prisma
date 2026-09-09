@@ -80,26 +80,26 @@ model Verification {
 
 model Activity{
   id String @id @default(cuid())
-  carDistance Int
-  bikeDistance Int
-  busDistance Int
-  trainDistance Int
-  flightDistance Int
-  electricity Int
-  lpg Int
-  naturalGas Int
-  chicken Int
-  vegMeals Int
-  dairy Int
-  plastic Int
-  paper Int
-  organic Int
-  others Int
-  totalTransport Int
-  totalFood Int
-  totalEnergy Int
-  totalWaste Int
-  totalEmission Int
+  carDistance Float
+  bikeDistance Float
+  busDistance Float
+  trainDistance Float
+  flightDistance Float
+  electricity Float
+  lpg Float
+  naturalGas Float
+  chicken Float
+  vegMeals Float
+  dairy Float
+  plastic Float
+  paper Float
+  organic Float
+  others Float
+  totalTransport Float
+  totalFood Float
+  totalEnergy Float
+  totalWaste Float
+  totalEmission Float
   userId String
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createdAt DateTime @default(now())

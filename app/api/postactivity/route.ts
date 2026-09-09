@@ -23,18 +23,18 @@ import {
 } from '@/lib/utils'  
 
 export async function POST(request:Request){
-    const {carDistance,bikeDistance,busDistance,trainDistance
-        ,flightDistance,
-        electricity,
-        lpg,
-        naturalGas,
-        chicken,
-        vegMeals,
-        dairy,
-        plastic,
-        paper,
-        organic,
-        others,
+    const {carDistance = 0,bikeDistance = 0,busDistance = 0,trainDistance = 0
+        ,flightDistance = 0,
+        electricity = 0,
+        lpg = 0,
+        naturalGas = 0,
+        chicken = 0,
+        vegMeals = 0,
+        dairy = 0,
+        plastic = 0,
+        paper = 0,
+        organic = 0,
+        others = 0,
     } = await request.json()
 
     const session = await auth.api.getSession({
@@ -83,7 +83,15 @@ export async function POST(request:Request){
         }
     })
 
-    return Response.json({message:"Task Successfull"},{status:200});
+    return Response.json(
+    {
+        data: activity,
+        message: "Task Successful",
+    },
+    {
+        status: 200,
+    }
+);
 
 
 

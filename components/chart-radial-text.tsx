@@ -22,17 +22,14 @@ import {
   type ChartConfig,
 } from "@/components/ui/chart"
 import { FaLeaf } from "react-icons/fa6"
-import {
-  Progress,
-  ProgressLabel,
-  ProgressValue,
-} from "@/components/ui/progress"
+
+
+import { useActivityStore } from "@/stores/useActivityStore"
+
 
 export const description = "A radial chart with text"
 
-const chartData = [
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-]
+
 
 const chartConfig = {
   visitors: {
@@ -45,11 +42,23 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function ChartRadialText() {
+  const { data } = useActivityStore();
+  
+
+  const emission = data?.data?.totalEmission ?? 0;
+
+  const chartData = [
+    {
+      name: "Emission",
+      visitors: emission,
+    },
+  ];
+
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="flex gap-2 text-green-700">Your Carbon Emission for Today <FaLeaf/> </CardTitle>
-        
+        <CardTitle className="flex gap-2 text-green-700">Your Carbon Emission for Today <FaLeaf /> </CardTitle>
+
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -57,6 +66,7 @@ export function ChartRadialText() {
           className="mx-auto aspect-square max-h-[250px]"
         >
           <RadialBarChart
+            key={emission}
             data={chartData}
             startAngle={0}
             endAngle={250}
@@ -82,13 +92,13 @@ export function ChartRadialText() {
                         textAnchor="middle"
                         dominantBaseline="middle"
                       >
-                        
+
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
                           className="fill-foreground text-4xl font-bold"
                         >
-                          {chartData[0].visitors.toLocaleString()}
+                          {emission.toFixed(2)}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
@@ -106,7 +116,7 @@ export function ChartRadialText() {
           </RadialBarChart>
         </ChartContainer>
       </CardContent>
-     
+
     </Card>
   )
 }
