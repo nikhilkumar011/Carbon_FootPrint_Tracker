@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const carEF = 0.192;
+export const carEF =  0.192;
 export const bikeEF = 0;
 export const busEF = 0.105;
 export const trainEF = 0.041;
