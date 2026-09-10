@@ -31,7 +31,11 @@ export async function GET() {
                     gte: startOfDay,
                     lt: endOfDay,
                 },
+             
             },
+            orderBy:{
+                createdAt:'desc'
+            }
         });
 
         if (!data) {
