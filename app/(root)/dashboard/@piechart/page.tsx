@@ -98,7 +98,7 @@ export default function ChartPieLabelList() {
   }, [allActivities]);
 
   return (
-    <Card className="flex flex-col w-70 md:w-150">
+    <Card className="flex flex-col w-75 md:w-150">
       <CardHeader className="items-center pb-0">
         <CardTitle>Category Wise Emission</CardTitle>
       </CardHeader>

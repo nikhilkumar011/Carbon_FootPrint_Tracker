@@ -66,6 +66,29 @@ export const useActivityStore = create((set) => ({
         } catch (error) {
             console.log(error);
         }
+    },
+    getRecommendations: async (activity: any) => {
+    set({ recommendationsLoading: true });
+    try {
+      const res = await fetch("/api/recommendations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ activity }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.message || "Failed to get recommendations");
+      }
+
+      const data = await res.json();
+      set({ recommendations: data.recommendations, recommendationsLoading: false });
+      return data;
+    } catch (error) {
+      console.error("Error getting recommendations:", error);
+      toast.error("Failed to generate recommendations");
+      set({ recommendationsLoading: false });
     }
+  },
 
 }));
