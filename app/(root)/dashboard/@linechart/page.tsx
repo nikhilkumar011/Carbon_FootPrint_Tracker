@@ -63,7 +63,7 @@ export default function ChartLineLinear() {
   }, [allActivities]);
 
   return (
-    <Card className="md:h-90  w-70 md:w-full">
+    <Card className="md:h-100  w-70 md:w-full">
       <CardHeader>
         <CardTitle>Emission Over Time</CardTitle>
       </CardHeader>
