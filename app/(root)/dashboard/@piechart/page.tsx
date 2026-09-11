@@ -1,7 +1,7 @@
 "use client";
 
 import { Pie, PieChart, LabelList } from "recharts";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useActivityStore } from "@/stores/useActivityStore";
 
 import {
@@ -98,7 +98,7 @@ export default function ChartPieLabelList() {
   }, [allActivities]);
 
   return (
-    <Card className="flex flex-col w-75 md:w-150">
+    <Card className="flex md:h-100 flex-col w-75 md:w-150">
       <CardHeader className="items-center pb-0">
         <CardTitle>Category Wise Emission</CardTitle>
       </CardHeader>
@@ -122,8 +122,11 @@ export default function ChartPieLabelList() {
                   className="fill-background"
                   stroke="none"
                   fontSize={12}
-                  formatter={(value: keyof typeof chartConfig) =>
-                    chartConfig[value]?.label
+                  formatter={(value) =>
+                    typeof value === "string"
+                      ? chartConfig[value as keyof typeof chartConfig]?.label ??
+                        value
+                      : value
                   }
                 />
               </Pie>

@@ -59,11 +59,13 @@ export function AppSidebar() {
               </SidebarMenuItem>
 
               <SidebarMenuItem>
+                <Link href={'/historypage'}>
                 <SidebarMenuButton>
                   <div className="flex gap-2 text-center justify-center">
                   <History/> History
                  </div>
                 </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
 
               <SidebarMenuItem>

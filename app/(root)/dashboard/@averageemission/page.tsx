@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   Card,
   CardContent,
@@ -8,28 +8,29 @@ import {
 import { Gauge } from "lucide-react";
 import { useActivityStore } from "@/stores/useActivityStore";
 
+type Activity = {
+  totalEmission?: number | null;
+};
+
 const Page = () => {
   const { getActivities, allActivities } = useActivityStore();
-  const [averageEmission, setAverageEmission] = useState(0);
 
   useEffect(() => {
     getActivities();
   }, [getActivities]);
 
-  useEffect(() => {
-    if (!allActivities || allActivities.length === 0) {
-      setAverageEmission(0);
-      return;
+  const averageEmission = useMemo(() => {
+    if (!Array.isArray(allActivities) || allActivities.length === 0) {
+      return 0;
     }
 
     const total = allActivities.reduce(
-      (sum, activity) => sum + Number(activity.totalEmission || 0),
+      (sum: number, activity: Activity) =>
+        sum + Number(activity.totalEmission || 0),
       0
     );
 
-    const average = total / allActivities.length;
-
-    setAverageEmission(Number(average.toFixed(2)));
+    return Number((total / allActivities.length).toFixed(2));
   }, [allActivities]);
 
   return (
